@@ -23,7 +23,9 @@ namespace Tests
                 .ConfigureWebHost(webHost =>//Configure the web host to use test server and test environament
                 {
                     webHost.UseTestServer();
-                    webHost.UseEnvironment("Test");
+                    webHost.UseEnvironment("Test");//If we have different configuration file for the
+                                                   //test environment we will be able to check with simple if statement
+                                                   //I did an example of this in the program class in remarks                                               
                 });
             var host = builder.Start();//Start the host
             ServiceProvider = host.Services;//Get the services from the host

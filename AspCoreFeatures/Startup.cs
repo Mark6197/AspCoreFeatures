@@ -34,6 +34,7 @@ namespace AspCoreFeatures
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AspCoreFeatures", Version = "v1" });
+                //JWT cobfoguration for swagger- not needed in this demo
                 //var securityScheme = new OpenApiSecurityScheme
                 //{
                 //    Name = "JWT Authentication",
@@ -54,6 +55,8 @@ namespace AspCoreFeatures
                 //    {securityScheme, new string[] { }}
                 //});
 
+                //Read the swagger comment from the auto generated xml file.
+                //In order to make the auto generated xml file we need to add to line 6-9 in csproj file 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -70,6 +73,8 @@ namespace AspCoreFeatures
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AspCoreFeatures v1"));
             }
 
+
+            //Register the middleware
             app.UseMiddleware<RequestResponseLoggingMiddleware>();
 
             app.UseHttpsRedirection();

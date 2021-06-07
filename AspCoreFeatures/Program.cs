@@ -21,7 +21,15 @@ namespace AspCoreFeatures
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                }).ConfigureLogging(builder =>
+                })
+            //  .ConfigureServices((hostContext, services) =>
+            // {
+            //   if (hostContext.HostingEnvironment.EnvironmentName == "Test")
+            //     FlightsManagmentSystemConfig.Instance.Init("FlightsManagmentSystemTests.Config.json");
+            //   else
+            //     FlightsManagmentSystemConfig.Instance.Init();
+            //})
+            .ConfigureLogging(builder =>//Configure log4net, need to add the log4net configuration file, 
                 {
                     builder.SetMinimumLevel(LogLevel.Debug);
                     builder.AddLog4Net("Log4Net.config");
